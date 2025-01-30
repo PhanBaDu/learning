@@ -1,0 +1,20 @@
+// Animation
+@import './abstract/animations';
+
+// Color Variables and Font Import
+@import './abstract/variables';
+
+// Center Content CSS
+@import './abstract/mixins';
+
+// Navigation
+@import './components/navigations';
+
+// Index CSS Styles
+@import './pages/home';
+
+// Body, Container, Cursor, Preloader, Page Scrollbar
+@import './base';
+
+// Heading Paragraph and Project Left and Right sections
+@import './typography';
