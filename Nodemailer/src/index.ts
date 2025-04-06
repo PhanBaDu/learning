@@ -17,7 +17,7 @@ const sendEmail = async () => {
             to: "duphan03@gmail.com",
             subject: "Hello",
             text: "Hello word",
-            html: "<h1>Hello world</h1>"
+            // html: "<h1>Hello world</h1>"
         })
 
 
