@@ -34,8 +34,8 @@ export default async function Header() {
               <Avatar className="rounded-2xl cursor-pointer">
                 <AvatarImage src={user.profileImage} />
                 <AvatarFallback className="text-xs rounded-2xl">
-                  {user.firstName.charAt(0)}
-                  {user.lastName.charAt(0)}
+                  {user.firstName?.charAt(0) || ''}
+                  {user.lastName?.charAt(0) || ''}
                 </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
