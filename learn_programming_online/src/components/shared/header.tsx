@@ -1,7 +1,22 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Logo from '../../../public/assets/logo.svg';
-export default function Header() {
+import { LoginLink, LogoutLink, RegisterLink } from '@kinde-oss/kinde-auth-nextjs/components';
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+
+export default async function Header() {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+
   return (
     <div className="p-5 border-b border-b-muted flex justify-between items-center">
       <div className="flex gap-2 items-center flex-1">
@@ -14,12 +29,40 @@ export default function Header() {
         />
       </div>
       <div className="flex-1 flex justify-end gap-5">
-        <Button className="rounded-xl h-11 w-32 shadow-none" variant={'secondary'}>
-          Đăng Ký
-        </Button>
-        <Button className="rounded-xl h-11 w-32 shadow-none" variant={'default'}>
-          Đăng Nhập
-        </Button>
+        {user ? (
+          <DropdownMenu modal={false}>
+            <DropdownMenuTrigger>
+              <Avatar className="rounded-2xl cursor-pointer">
+                <AvatarImage src="https://github.com/evilrabbit.png" />
+                <AvatarFallback className="text-xs rounded-2xl">zv</AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-44 shadow-none">
+              <DropdownMenuLabel>
+                {user.family_name} {user.given_name}
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="cursor-pointer w-full p-0">
+                <Button variant={'destructive'} className="w-full" asChild>
+                  <LogoutLink>Đăng xuất</LogoutLink>
+                </Button>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          <>
+            <RegisterLink>
+              <Button className="rounded-xl h-11 w-32 shadow-none" variant={'secondary'}>
+                Đăng Ký
+              </Button>
+            </RegisterLink>
+            <LoginLink>
+              <Button className="rounded-xl h-11 w-32 shadow-none" variant={'default'}>
+                Đăng Nhập
+              </Button>
+            </LoginLink>
+          </>
+        )}
       </div>
     </div>
   );
