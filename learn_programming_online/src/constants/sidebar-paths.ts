@@ -1,4 +1,4 @@
-import { BookOpenText, GraduationCap, LucideIcon, Route } from 'lucide-react';
+import { GraduationCap, LayoutGrid, LucideIcon, Waypoints } from 'lucide-react';
 
 interface SidebarPaths {
   href: string;
@@ -10,19 +10,19 @@ interface SidebarPaths {
 export const sidebarPaths: SidebarPaths[] = [
   {
     href: '/',
-    icon: GraduationCap,
+    icon: LayoutGrid,
     title: 'Trang chủ',
     active: true,
   },
   {
     href: '/learning',
-    icon: Route,
+    icon: Waypoints,
     title: 'Lộ trình',
     active: false,
   },
   {
     href: '/blog',
-    icon: BookOpenText,
+    icon: GraduationCap,
     title: 'Bài viết',
     active: false,
   },

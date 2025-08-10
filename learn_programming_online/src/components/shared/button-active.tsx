@@ -18,7 +18,11 @@ export default function ButtonActive({ icon: Icon, title, active, href }: Button
         variant={active ? 'secondary' : 'ghost'}
         size={'icon'}
       >
-        <Icon strokeWidth={2.5} />
+        <Icon
+          strokeWidth={2}
+          style={{ width: '20px', height: '20px' }}
+          fill={active ? 'currentColor' : 'none'}
+        />
         <p className="text-xs">{title}</p>
       </Button>
     </Link>
